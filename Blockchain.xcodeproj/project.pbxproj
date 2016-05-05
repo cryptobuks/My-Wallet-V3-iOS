@@ -20,6 +20,22 @@
 		23107F831BBEF0AC00A6A9D4 /* BCConfirmPaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23107F821BBEF0AC00A6A9D4 /* BCConfirmPaymentView.m */; };
 		231FF2CD1B56F9F1009EEB02 /* SettingsAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 231FF2CC1B56F9F1009EEB02 /* SettingsAboutViewController.m */; };
 		2322321A1B44D4CB00E5DF26 /* UpgradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 232232191B44D4CB00E5DF26 /* UpgradeViewController.m */; };
+		2326BB881CDA85D200C30E47 /* app.js in Resources */ = {isa = PBXBuildFile; fileRef = 2326BB861CDA85D200C30E47 /* app.js */; };
+		2326BB891CDA85D200C30E47 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 2326BB871CDA85D200C30E47 /* main.js */; };
+		2326BB9B1CDA863200C30E47 /* libcares.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2326BB8E1CDA863200C30E47 /* libcares.a */; };
+		2326BB9C1CDA863200C30E47 /* libchrome_zlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2326BB8F1CDA863200C30E47 /* libchrome_zlib.a */; };
+		2326BB9D1CDA863200C30E47 /* libhttp_parser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2326BB901CDA863200C30E47 /* libhttp_parser.a */; };
+		2326BB9E1CDA863200C30E47 /* libjx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2326BB911CDA863200C30E47 /* libjx.a */; };
+		2326BB9F1CDA863200C30E47 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2326BB921CDA863200C30E47 /* libleveldb.a */; };
+		2326BBA01CDA863200C30E47 /* libleveldown.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2326BB931CDA863200C30E47 /* libleveldown.a */; };
+		2326BBA11CDA863200C30E47 /* libmozjs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2326BB941CDA863200C30E47 /* libmozjs.a */; };
+		2326BBA21CDA863200C30E47 /* libopenssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2326BB951CDA863200C30E47 /* libopenssl.a */; };
+		2326BBA31CDA863200C30E47 /* libsnappy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2326BB961CDA863200C30E47 /* libsnappy.a */; };
+		2326BBA41CDA863200C30E47 /* libsqlite3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2326BB971CDA863200C30E47 /* libsqlite3.a */; };
+		2326BBA51CDA863200C30E47 /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2326BB981CDA863200C30E47 /* libuv.a */; };
+		2326BBA81CDA872D00C30E47 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2326BBA71CDA872D00C30E47 /* CoreFoundation.framework */; };
+		2326BBAA1CDA876400C30E47 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2326BBA91CDA876400C30E47 /* libstdc++.6.0.9.dylib */; };
+		2326BBAB1CDA89F300C30E47 /* JXcore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2326BB9A1CDA863200C30E47 /* JXcore.m */; };
 		2326C6C21BBD7A8100AB7C4D /* UIViewController+AutoDismiss.m in Sources */ = {isa = PBXBuildFile; fileRef = 2326C6C11BBD7A8100AB7C4D /* UIViewController+AutoDismiss.m */; };
 		232E17F91C29F0EF0044942E /* UINavigationController+PopToRootWithCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232E17F81C29F0EF0044942E /* UINavigationController+PopToRootWithCompletion.swift */; };
 		23321D7A1BB0730C0005624F /* my-wallet.js in Resources */ = {isa = PBXBuildFile; fileRef = 23321D791BB0730C0005624F /* my-wallet.js */; };
@@ -353,6 +369,25 @@
 		231FF2CC1B56F9F1009EEB02 /* SettingsAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsAboutViewController.m; sourceTree = "<group>"; };
 		232232181B44D4CB00E5DF26 /* UpgradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeViewController.h; sourceTree = "<group>"; };
 		232232191B44D4CB00E5DF26 /* UpgradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeViewController.m; sourceTree = "<group>"; };
+		2326BB861CDA85D200C30E47 /* app.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = app.js; sourceTree = "<group>"; };
+		2326BB871CDA85D200C30E47 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
+		2326BB8C1CDA863200C30E47 /* jx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jx.h; sourceTree = "<group>"; };
+		2326BB8D1CDA863200C30E47 /* jx_result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jx_result.h; sourceTree = "<group>"; };
+		2326BB8E1CDA863200C30E47 /* libcares.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcares.a; sourceTree = "<group>"; };
+		2326BB8F1CDA863200C30E47 /* libchrome_zlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libchrome_zlib.a; sourceTree = "<group>"; };
+		2326BB901CDA863200C30E47 /* libhttp_parser.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libhttp_parser.a; sourceTree = "<group>"; };
+		2326BB911CDA863200C30E47 /* libjx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjx.a; sourceTree = "<group>"; };
+		2326BB921CDA863200C30E47 /* libleveldb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libleveldb.a; sourceTree = "<group>"; };
+		2326BB931CDA863200C30E47 /* libleveldown.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libleveldown.a; sourceTree = "<group>"; };
+		2326BB941CDA863200C30E47 /* libmozjs.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmozjs.a; sourceTree = "<group>"; };
+		2326BB951CDA863200C30E47 /* libopenssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopenssl.a; sourceTree = "<group>"; };
+		2326BB961CDA863200C30E47 /* libsnappy.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsnappy.a; sourceTree = "<group>"; };
+		2326BB971CDA863200C30E47 /* libsqlite3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsqlite3.a; sourceTree = "<group>"; };
+		2326BB981CDA863200C30E47 /* libuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libuv.a; sourceTree = "<group>"; };
+		2326BB991CDA863200C30E47 /* JXcore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXcore.h; sourceTree = "<group>"; };
+		2326BB9A1CDA863200C30E47 /* JXcore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXcore.m; sourceTree = "<group>"; };
+		2326BBA71CDA872D00C30E47 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		2326BBA91CDA876400C30E47 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "../../../../../usr/lib/libstdc++.6.0.9.dylib"; sourceTree = "<group>"; };
 		2326C6C01BBD7A8100AB7C4D /* UIViewController+AutoDismiss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AutoDismiss.h"; sourceTree = "<group>"; };
 		2326C6C11BBD7A8100AB7C4D /* UIViewController+AutoDismiss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AutoDismiss.m"; sourceTree = "<group>"; };
 		232E17F81C29F0EF0044942E /* UINavigationController+PopToRootWithCompletion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+PopToRootWithCompletion.swift"; sourceTree = "<group>"; };
@@ -802,20 +837,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2326BBAA1CDA876400C30E47 /* libstdc++.6.0.9.dylib in Frameworks */,
+				2326BBA81CDA872D00C30E47 /* CoreFoundation.framework in Frameworks */,
+				2326BBA51CDA863200C30E47 /* libuv.a in Frameworks */,
 				67812A7D1A4A0E6800B04EBF /* CoreImage.framework in Frameworks */,
+				2326BBA41CDA863200C30E47 /* libsqlite3.a in Frameworks */,
 				67812A791A4A0E1800B04EBF /* QuartzCore.framework in Frameworks */,
 				67812A771A4A0DDA00B04EBF /* CoreGraphics.framework in Frameworks */,
 				FA6323431A44758700EB3974 /* MapKit.framework in Frameworks */,
+				2326BBA31CDA863200C30E47 /* libsnappy.a in Frameworks */,
 				673107EF19F6BAF200BE6899 /* AVFoundation.framework in Frameworks */,
 				220348AC19A4D60000611AC3 /* Social.framework in Frameworks */,
 				220348AA19A4D5FA00611AC3 /* Twitter.framework in Frameworks */,
 				84AEEC661987C49A000E8DC8 /* CoreLocation.framework in Frameworks */,
+				2326BB9E1CDA863200C30E47 /* libjx.a in Frameworks */,
 				84FC0301198162AE00B97D5B /* libcrypto.a in Frameworks */,
 				9F7DCCED15345245000CBFC8 /* MessageUI.framework in Frameworks */,
 				9F7DCCEB15345213000CBFC8 /* Security.framework in Frameworks */,
 				9F7480D51514041B00BC4292 /* AudioToolbox.framework in Frameworks */,
 				9F7480CB1514022200BC4292 /* SystemConfiguration.framework in Frameworks */,
+				2326BB9C1CDA863200C30E47 /* libchrome_zlib.a in Frameworks */,
+				2326BBA11CDA863200C30E47 /* libmozjs.a in Frameworks */,
+				2326BBA21CDA863200C30E47 /* libopenssl.a in Frameworks */,
 				9FB3637614B60128004BEA02 /* UIKit.framework in Frameworks */,
+				2326BB9F1CDA863200C30E47 /* libleveldb.a in Frameworks */,
+				2326BBA01CDA863200C30E47 /* libleveldown.a in Frameworks */,
+				2326BB9B1CDA863200C30E47 /* libcares.a in Frameworks */,
+				2326BB9D1CDA863200C30E47 /* libhttp_parser.a in Frameworks */,
 				9FB3637814B60128004BEA02 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -823,6 +871,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2326BB841CDA85D200C30E47 /* JS */ = {
+			isa = PBXGroup;
+			children = (
+				2326BB851CDA85D200C30E47 /* jxcore */,
+				2326BB871CDA85D200C30E47 /* main.js */,
+			);
+			path = JS;
+			sourceTree = "<group>";
+		};
+		2326BB851CDA85D200C30E47 /* jxcore */ = {
+			isa = PBXGroup;
+			children = (
+				2326BB861CDA85D200C30E47 /* app.js */,
+			);
+			path = jxcore;
+			sourceTree = "<group>";
+		};
+		2326BB8A1CDA863200C30E47 /* JXcore */ = {
+			isa = PBXGroup;
+			children = (
+				2326BB8B1CDA863200C30E47 /* bin */,
+				2326BB991CDA863200C30E47 /* JXcore.h */,
+				2326BB9A1CDA863200C30E47 /* JXcore.m */,
+			);
+			path = JXcore;
+			sourceTree = "<group>";
+		};
+		2326BB8B1CDA863200C30E47 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				2326BB8C1CDA863200C30E47 /* jx.h */,
+				2326BB8D1CDA863200C30E47 /* jx_result.h */,
+				2326BB8E1CDA863200C30E47 /* libcares.a */,
+				2326BB8F1CDA863200C30E47 /* libchrome_zlib.a */,
+				2326BB901CDA863200C30E47 /* libhttp_parser.a */,
+				2326BB911CDA863200C30E47 /* libjx.a */,
+				2326BB921CDA863200C30E47 /* libleveldb.a */,
+				2326BB931CDA863200C30E47 /* libleveldown.a */,
+				2326BB941CDA863200C30E47 /* libmozjs.a */,
+				2326BB951CDA863200C30E47 /* libopenssl.a */,
+				2326BB961CDA863200C30E47 /* libsnappy.a */,
+				2326BB971CDA863200C30E47 /* libsqlite3.a */,
+				2326BB981CDA863200C30E47 /* libuv.a */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
 		670595A11AB0F59D00D2D6D9 /* KeychainItemWrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -985,6 +1080,8 @@
 		9FB3636614B60128004BEA02 = {
 			isa = PBXGroup;
 			children = (
+				2326BB841CDA85D200C30E47 /* JS */,
+				2326BB8A1CDA863200C30E47 /* JXcore */,
 				9FB3637B14B60128004BEA02 /* Blockchain */,
 				9FB3637414B60128004BEA02 /* Frameworks */,
 				9FB3637214B60128004BEA02 /* Products */,
@@ -1003,6 +1100,8 @@
 		9FB3637414B60128004BEA02 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2326BBA91CDA876400C30E47 /* libstdc++.6.0.9.dylib */,
+				2326BBA71CDA872D00C30E47 /* CoreFoundation.framework */,
 				67812A7C1A4A0E6800B04EBF /* CoreImage.framework */,
 				67812A781A4A0E1800B04EBF /* QuartzCore.framework */,
 				67812A761A4A0DDA00B04EBF /* CoreGraphics.framework */,
@@ -1379,6 +1478,7 @@
 				ECD244F219A8AC45004B1F40 /* PEKeyboard-4-edit.png in Resources */,
 				C9BE91861945D8F600FD516D /* PEKeyboard-2-edit.png in Resources */,
 				ECD244F119A8AC45004B1F40 /* PEKeyboard-4-dot.png in Resources */,
+				2326BB891CDA85D200C30E47 /* main.js in Resources */,
 				C9BE917E1945D8F600FD516D /* PEViewController.xib in Resources */,
 				C9BE91831945D8F600FD516D /* PEKeyboard-1.png in Resources */,
 				C9BE91801945D8F600FD516D /* PEKeyboard-1-dot.png in Resources */,
@@ -1393,6 +1493,7 @@
 				C9BE91851945D8F600FD516D /* PEKeyboard-2-dot.png in Resources */,
 				FA63233E1A433DEB00EB3974 /* MerchantMapView.xib in Resources */,
 				A2599BAA1B0B762400C2EA81 /* Backup.storyboard in Resources */,
+				2326BB881CDA85D200C30E47 /* app.js in Resources */,
 				C9BE91881945D8F600FD516D /* PEKeyboard-2.png in Resources */,
 				67EEE7731A8E547900288753 /* PEPin-on@3x.png in Resources */,
 				C9BE91821945D8F600FD516D /* PEKeyboard-1-next.png in Resources */,
@@ -1473,6 +1574,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2326BBAB1CDA89F300C30E47 /* JXcore.m in Sources */,
 				2343E4031CB434BC008DC7D1 /* NSArray+EncodedJSONString.m in Sources */,
 				237C9E901C482132000754F7 /* AccountsAndAddressesDetailViewController.m in Sources */,
 				9F1831EB1516AE3500FB3D52 /* NSString+URLEncode.m in Sources */,
@@ -2118,7 +2220,10 @@
 				INFOPLIST_FILE = "Blockchain/Blockchain-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Submodules/OpenSSL-for-iPhone/lib";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Submodules/OpenSSL-for-iPhone/lib",
+					"$(PROJECT_DIR)/JXcore/bin",
+				);
 				PRODUCT_NAME = Blockchain;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Blockchain/Blockchain-Bridging-Header.h";
@@ -2151,7 +2256,10 @@
 				INFOPLIST_FILE = "Blockchain/Blockchain-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Submodules/OpenSSL-for-iPhone/lib";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Submodules/OpenSSL-for-iPhone/lib",
+					"$(PROJECT_DIR)/JXcore/bin",
+				);
 				PRODUCT_NAME = Blockchain;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Blockchain/Blockchain-Bridging-Header.h";

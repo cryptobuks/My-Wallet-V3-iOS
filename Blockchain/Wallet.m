@@ -18,6 +18,7 @@
 #import "NSData+Hex.h"
 #import "TransactionsViewController.h"
 #import "NSArray+EncodedJSONString.h"
+#import "JXcore.h"
 
 @implementation transactionProgressListeners
 @end
@@ -53,12 +54,70 @@
     self = [super init];
     
     if (self) {
+        [self testJXcore];
+        
+        [JXcore Evaluate:@"callFromJS()"];
+        
         _transactionProgressListeners = [NSMutableDictionary dictionary];
         webView = [[JSBridgeWebView alloc] initWithFrame:CGRectZero];
         webView.JSDelegate = self;
     }
     
     return self;
+}
+
+- (void)testJXcore
+{
+    [JXcore useSubThreading];
+    [JXcore startEngine:@"main"];
+    
+    // Listen to Errors on the JS land
+    [JXcore addNativeBlock:^(NSArray *params, NSString *callbackId) {
+        NSString *errorMessage = (NSString*)[params objectAtIndex:0];
+        NSString *errorStack = (NSString*)[params objectAtIndex:1];
+        
+        NSLog(@"Error!: %@\nStack:%@\n", errorMessage, errorStack);
+    } withName:@"OnError"];
+    
+    NSArray *params = [NSArray arrayWithObjects:@"app.js", nil];
+    [JXcore callEventCallback:@"StartApplication" withParams:params];
+    
+    // Objc to JS
+    [JXcore Evaluate:@"logSomething()"];
+    
+    // Objc to JS synchronous
+    NSString *firstString = [self readValue];
+    NSString *secondString = [self readValue];
+    // Set a breakpoint at this line to check if firstString has been assigned a value by the time secondString has been set
+    
+    // Objc to JS with callback/JS to Objc
+    [JXcore addNativeBlock:^(NSArray *params, NSString *callbackId) {
+        DLog(@"params %@", [params firstObject]);
+        DLog(@"doing some objc code");
+    } withName:@"callFromJS"];
+}
+
+- (NSString *)readValue
+{
+    __block NSString *resultString = nil;
+    
+    [JXcore addNativeBlock:^(NSArray *params, NSString *callbackId) {
+        if ([params firstObject]) {
+            resultString = [params firstObject];
+            DLog(@"%@", [NSDate date]);
+        }
+    } withName:@"readSomething"];
+    
+    [JXcore Evaluate:@"readSomething()"];
+    
+    NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:0.1];
+
+    while (resultString == nil) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:loopUntil];
+        loopUntil = [NSDate dateWithTimeIntervalSinceNow:0.1];
+    }
+    
+    return resultString;
 }
 
 - (void)dealloc
