@@ -1752,6 +1752,11 @@ MyWalletPhone.filteredWalletJSON = function() {
     return walletJSON;
 }
 
+MyWalletPhone.didSetLatestBlock = function() {
+    var latestBlock = JSON.stringify(MyWallet.wallet.latestBlock);
+    return latestBlock == null ? '' : latestBlock;
+}
+
 MyWalletPhone.dust = function() {
     return Bitcoin.networks.bitcoin.dustThreshold;
 }

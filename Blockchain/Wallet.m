@@ -1227,12 +1227,12 @@
         
         [self parseLatestBlockJSON:latestBlockJSON];
         
-    } command:@"JSON.stringify(MyWallet.wallet.latestBlock)"];
+    } command:@"MyWalletPhone.didSetLatestBlock()"];
 }
 
 - (void)parseLatestBlockJSON:(NSString*)latestBlockJSON
 {
-    if ([latestBlockJSON isEqualToString:@"null"]) {
+    if ([latestBlockJSON isEqualToString:@""]) {
         return;
     }
     
