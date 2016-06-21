@@ -240,6 +240,8 @@
 #define BC_STRING_GO_TO_SETTINGS NSLocalizedString(@"Go to Settings", nil)
 
 #define BC_STRING_SUPPORT NSLocalizedString(@"Support", nil)
+#define BC_STRING_OPEN_ARGUMENT NSLocalizedString(@"Open %@?", nil)
+#define BC_STRING_LEAVE_APP NSLocalizedString(@"You will be leaving the app.", nil)
 
 #define BC_STRING_TERMS_OF_SERVICE NSLocalizedString(@"Terms of Service", nil)
 #define BC_STRING_TRANSACTION NSLocalizedString(@"Transaction", nil)
