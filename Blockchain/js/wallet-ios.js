@@ -1156,13 +1156,13 @@ MyWalletPhone.addKey = function(keyString) {
         
         var message = 'There was an error importing this private key';
         
-        if (e === 'presentInWallet') {
+        if (e.message === 'presentInWallet') {
             message = 'Key already imported';
         }
-        else if (e === 'needsBip38') {
+        else if (e.message === 'needsBip38') {
             message = 'Missing BIP38 password';
         }
-        else if (e === 'wrongBipPass') {
+        else if (e.message === 'wrongBipPass') {
             message = 'Wrong BIP38 password';
         }
         
@@ -1268,7 +1268,7 @@ MyWalletPhone.addKeyToLegacyAddress = function(privateKeyString, legacyAddress) 
     var error = function(message) {
         console.log('Add private key Error: ' + message);
     
-        device.execute('on_error_adding_private_key_watch_only:', [message]);
+        device.execute('on_error_adding_private_key_watch_only:', [message.message]);
     };
     
     var needsBip38Passsword = Helpers.detectPrivateKeyFormat(privateKeyString) === 'bip38';
@@ -1351,7 +1351,7 @@ MyWallet.getNTransactionsPerPage = function() {
 
 // Settings
 
-MyWalletPhone.get_account_info = function () {
+MyWalletPhone.getAccountInfo = function () {
     
     var success = function (data) {
         console.log('Getting account info');
@@ -1363,10 +1363,10 @@ MyWalletPhone.get_account_info = function () {
         console.log('Error getting account info: ' + e);
     };
     
-    BlockchainSettingsAPI.get_account_info(success, error);
+    BlockchainSettingsAPI.getAccountInfo(success, error);
 }
 
-MyWalletPhone.change_email_account = function(email) {
+MyWalletPhone.changeEmail = function(email) {
     
     var success = function () {
         console.log('Changing email');
@@ -1377,10 +1377,10 @@ MyWalletPhone.change_email_account = function(email) {
         console.log('Error changing email: ' + e);
     };
     
-    BlockchainSettingsAPI.change_email(email, success, error);
+    BlockchainSettingsAPI.changeEmail(email, success, error);
 }
 
-MyWalletPhone.resend_verification_email = function(email) {
+MyWalletPhone.resendEmailConfirmation = function(email) {
     
     var success = function () {
         console.log('Resending verification email');
@@ -1394,7 +1394,7 @@ MyWalletPhone.resend_verification_email = function(email) {
     BlockchainSettingsAPI.resendEmailConfirmation(email, success, error);
 }
 
-MyWalletPhone.change_mobile_number = function(mobileNumber) {
+MyWalletPhone.changeMobileNumber = function(mobileNumber) {
     
     var success = function () {
         console.log('Changing mobile number');
@@ -1408,7 +1408,7 @@ MyWalletPhone.change_mobile_number = function(mobileNumber) {
     BlockchainSettingsAPI.changeMobileNumber(mobileNumber, success, error);
 }
 
-MyWalletPhone.verify_mobile_number = function(code) {
+MyWalletPhone.verifyMobile = function(code) {
     
     var success = function () {
         console.log('Verifying mobile number');
@@ -1424,7 +1424,7 @@ MyWalletPhone.verify_mobile_number = function(code) {
     BlockchainSettingsAPI.verifyMobile(code, success, error);
 }
 
-MyWalletPhone.enable_two_step_verification_sms = function() {
+MyWalletPhone.setTwoFactorSMS = function() {
     
     var success = function () {
         console.log('Enabling two step SMS');
@@ -1439,7 +1439,7 @@ MyWalletPhone.enable_two_step_verification_sms = function() {
     BlockchainSettingsAPI.setTwoFactorSMS(success, error);
 }
 
-MyWalletPhone.disable_two_step_verification = function() {
+MyWalletPhone.unsetTwoFactor = function() {
     
     var success = function () {
         console.log('Disabling two step');
@@ -1454,7 +1454,7 @@ MyWalletPhone.disable_two_step_verification = function() {
     BlockchainSettingsAPI.unsetTwoFactor(success, error);
 }
 
-MyWalletPhone.update_password_hint = function(hint) {
+MyWalletPhone.updatePasswordHint = function(hint) {
 
     var success = function () {
         console.log('Updating password hint');
@@ -1466,10 +1466,10 @@ MyWalletPhone.update_password_hint = function(hint) {
         device.execute('on_update_password_hint_error');
     };
     
-    BlockchainSettingsAPI.update_password_hint1(hint, success, error);
+    BlockchainSettingsAPI.updatePasswordHint1(hint, success, error);
 }
 
-MyWalletPhone.change_password = function(password) {
+MyWalletPhone.changePassword = function(password) {
     
     var success = function () {
         console.log('Changing password');
@@ -1488,7 +1488,7 @@ MyWalletPhone.isCorrectMainPassword = function(password) {
     return WalletStore.isCorrectMainPassword(password);
 }
 
-MyWalletPhone.change_local_currency = function(code) {
+MyWalletPhone.changeLocalCurrency = function(code) {
     
     var success = function () {
         console.log('Changing local currency');
@@ -1499,10 +1499,10 @@ MyWalletPhone.change_local_currency = function(code) {
         console.log('Error changing local currency: ' + e);
     };
     
-    BlockchainSettingsAPI.change_local_currency(code, success, error);
+    BlockchainSettingsAPI.changeLocalCurrency(code, success, error);
 }
 
-MyWalletPhone.change_btc_currency = function(code) {
+MyWalletPhone.changeBtcCurrency = function(code) {
     
     var success = function () {
         console.log('Changing btc currency');
@@ -1513,10 +1513,10 @@ MyWalletPhone.change_btc_currency = function(code) {
         console.log('Error changing btc currency: ' + e);
     };
     
-    BlockchainSettingsAPI.change_btc_currency(code, success, error);
+    BlockchainSettingsAPI.changeBtcCurrency(code, success, error);
 }
 
-MyWalletPhone.get_all_currency_symbols = function () {
+MyWalletPhone.getAllCurrencySymbols = function () {
     
     var success = function (data) {
         console.log('Getting all currency symbols');
@@ -1532,7 +1532,7 @@ MyWalletPhone.get_all_currency_symbols = function () {
     promise.then(success, error);
 }
 
-MyWalletPhone.get_password_strength = function(password) {
+MyWalletPhone.getPasswordStrength = function(password) {
     var strength = Helpers.scorePassword(password);
     return strength;
 }
@@ -1668,7 +1668,7 @@ MyWalletPhone.disableNotifications = function() {
     MyWallet.wallet.disableNotifications(success, error);
 }
 
-MyWalletPhone.update_tor_ip_block = function(willEnable) {
+MyWalletPhone.updateTorIpBlock = function(willEnable) {
     
     var shouldEnable = Boolean(willEnable);
     
@@ -1682,7 +1682,7 @@ MyWalletPhone.update_tor_ip_block = function(willEnable) {
         device.execute('on_update_tor_error');
     }
     
-    BlockchainSettingsAPI.update_tor_ip_block(shouldEnable, success, error);
+    BlockchainSettingsAPI.updateTorIpBlock(shouldEnable, success, error);
 }
 
 MyWalletPhone.updateServerURL = function(url) {

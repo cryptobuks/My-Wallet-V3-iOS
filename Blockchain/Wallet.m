@@ -199,7 +199,7 @@
         return 0;
     }
     
-    return [[self.webView executeJSSynchronous:@"MyWalletPhone.get_password_strength(\"%@\")", [passwordString escapeStringForJS]] floatValue];
+    return [[self.webView executeJSSynchronous:@"MyWalletPhone.getPasswordStrength(\"%@\")", [passwordString escapeStringForJS]] floatValue];
 }
 
 - (void)getHistory
@@ -245,7 +245,7 @@
         return;
     }
     
-    [self.webView executeJS:@"JSON.stringify(MyWalletPhone.get_all_currency_symbols())"];
+    [self.webView executeJS:@"JSON.stringify(MyWalletPhone.getAllCurrencySymbols())"];
 }
 
 - (void)changeLocalCurrency:(NSString *)currencyCode
@@ -254,7 +254,7 @@
         return;
     }
     
-    [self.webView executeJS:@"MyWalletPhone.change_local_currency(\"%@\")", [currencyCode escapeStringForJS]];
+    [self.webView executeJS:@"MyWalletPhone.changeLocalCurrency(\"%@\")", [currencyCode escapeStringForJS]];
 }
 
 - (void)changeBtcCurrency:(NSString *)btcCode
@@ -263,7 +263,7 @@
         return;
     }
     
-    [self.webView executeJS:@"MyWalletPhone.change_btc_currency(\"%@\")", [btcCode escapeStringForJS]];
+    [self.webView executeJS:@"MyWalletPhone.changeBtcCurrency(\"%@\")", [btcCode escapeStringForJS]];
 }
 
 - (void)getAccountInfo
@@ -272,7 +272,7 @@
         return;
     }
     
-    [self.webView executeJS:@"JSON.stringify(MyWalletPhone.get_account_info())"];
+    [self.webView executeJS:@"JSON.stringify(MyWalletPhone.getAccountInfo())"];
 }
 
 - (void)changeEmail:(NSString *)newEmail
@@ -281,7 +281,7 @@
         return;
     }
     
-    [self.webView executeJS:@"MyWalletPhone.change_email_account(\"%@\")", [newEmail escapeStringForJS]];
+    [self.webView executeJS:@"MyWalletPhone.changeEmail(\"%@\")", [newEmail escapeStringForJS]];
 }
 
 - (void)resendVerificationEmail:(NSString *)email
@@ -290,7 +290,7 @@
         return;
     }
     
-    [self.webView executeJS:@"MyWalletPhone.resend_verification_email(\"%@\")", [email escapeStringForJS]];
+    [self.webView executeJS:@"MyWalletPhone.resendEmailConfirmation(\"%@\")", [email escapeStringForJS]];
 }
 
 - (void)changeMobileNumber:(NSString *)newMobileNumber
@@ -299,7 +299,7 @@
         return;
     }
     
-    [self.webView executeJS:@"MyWalletPhone.change_mobile_number(\"%@\")", [newMobileNumber escapeStringForJS]];
+    [self.webView executeJS:@"MyWalletPhone.changeMobileNumber(\"%@\")", [newMobileNumber escapeStringForJS]];
 }
 
 - (void)verifyMobileNumber:(NSString *)code
@@ -308,7 +308,7 @@
         return;
     }
     
-    [self.webView executeJS:@"MyWalletPhone.verify_mobile_number(\"%@\")", [code escapeStringForJS]];
+    [self.webView executeJS:@"MyWalletPhone.verifyMobile(\"%@\")", [code escapeStringForJS]];
 }
 
 - (void)enableTwoStepVerificationForSMS
@@ -317,7 +317,7 @@
         return;
     }
     
-    [self.webView executeJS:@"MyWalletPhone.enable_two_step_verification_sms()"];
+    [self.webView executeJS:@"MyWalletPhone.setTwoFactorSMS()"];
 }
 
 - (void)disableTwoStepVerification
@@ -326,7 +326,7 @@
         return;
     }
     
-    [self.webView executeJS:@"MyWalletPhone.disable_two_step_verification()"];
+    [self.webView executeJS:@"MyWalletPhone.unsetTwoFactor()"];
 }
 
 - (void)updatePasswordHint:(NSString *)hint
@@ -335,7 +335,7 @@
         return;
     }
     
-    [self.webView executeJS:@"MyWalletPhone.update_password_hint(\"%@\")", [hint escapeStringForJS]];
+    [self.webView executeJS:@"MyWalletPhone.updatePasswordHint(\"%@\")", [hint escapeStringForJS]];
 }
 
 - (void)changePassword:(NSString *)changedPassword
@@ -344,7 +344,7 @@
         return;
     }
     
-    [self.webView executeJS:@"MyWalletPhone.change_password(\"%@\")", [changedPassword escapeStringForJS]];
+    [self.webView executeJS:@"MyWalletPhone.changePassword(\"%@\")", [changedPassword escapeStringForJS]];
 }
 
 - (BOOL)isCorrectPassword:(NSString *)inputedPassword
@@ -940,7 +940,7 @@
         return;
     }
     
-    [self.webView executeJS:@"MyWalletPhone.update_tor_ip_block(%d)", willEnable];
+    [self.webView executeJS:@"MyWalletPhone.updateTorIpBlock(%d)", willEnable];
 }
 
 - (void)on_update_tor_success
