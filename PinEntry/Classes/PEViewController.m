@@ -71,6 +71,8 @@
     [self.scrollView setUserInteractionEnabled:YES];
     self.scrollView.frame = CGRectMake(0, 480 - self.scrollView.frame.size.height - 20, self.scrollView.frame.size.width, 360);
     
+    // TODO set these on app exit
+    // TODO add setting to disable swipe-to-receive
     
     NSString *nextAddress = [[NSUserDefaults standardUserDefaults] objectForKey:@"nextReceivingAddress"];
     NSNumber *nextAddressUsed = [[NSUserDefaults standardUserDefaults] objectForKey:@"nextReceivingAddressUsed"];
