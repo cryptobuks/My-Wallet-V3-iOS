@@ -75,6 +75,7 @@
     NSString *nextAddress = [[NSUserDefaults standardUserDefaults] objectForKey:@"nextReceivingAddress"];
     NSNumber *nextAddressUsed = [[NSUserDefaults standardUserDefaults] objectForKey:@"nextReceivingAddressUsed"];
     
+    // TODO - add && !changepin to this
     if (nextAddress) {
         [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width *2, self.scrollView.frame.size.height)];
         [self.scrollView setPagingEnabled:YES];
@@ -87,18 +88,24 @@
             }];
         });
         
+        UILabel *descLabel = [[UILabel alloc] initWithFrame:CGRectMake(320, 260, 320, 30)];
+        [descLabel setTextAlignment:NSTextAlignmentCenter];
+        [descLabel setTextColor:[UIColor whiteColor]];
+        [descLabel setFont:[UIFont systemFontOfSize:12]];
+        
         if (![nextAddressUsed boolValue]) {
             QRCodeGenerator *qrCodeGenerator = [[QRCodeGenerator alloc] init];
             
             UIImageView *qr = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width + 40, 20, self.view.frame.size.width - 80, self.view.frame.size.width - 80)];
             qr.image = [qrCodeGenerator qrImageFromAddress:nextAddress];
+            descLabel.text = nextAddress;
             
             [self.scrollView addSubview:qr];
         } else {
-            UILabel *usedLabel = [[UILabel alloc] initWithFrame:CGRectMake(320, 0, 320, 30)];
-            usedLabel.text = @"This address has already been used. Please login.";
-            [self.scrollView addSubview:usedLabel];
+            descLabel.text = @"This address has already been used. Please login.";
         }
+        
+        [self.scrollView addSubview:descLabel];
     } else {
         self.swipeLabel.hidden = YES;
     }
