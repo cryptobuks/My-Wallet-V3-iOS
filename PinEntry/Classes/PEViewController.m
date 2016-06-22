@@ -71,8 +71,6 @@
     [self.scrollView setUserInteractionEnabled:YES];
     self.scrollView.frame = CGRectMake(0, 480 - self.scrollView.frame.size.height - 20, self.scrollView.frame.size.width, 360);
     
-    [[NSUserDefaults standardUserDefaults] setValue:@"test123" forKey:@"nextReceivingAddress"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     NSString *nextAddress = [[NSUserDefaults standardUserDefaults] objectForKey:@"nextReceivingAddress"];
     NSNumber *nextAddressUsed = [[NSUserDefaults standardUserDefaults] objectForKey:@"nextReceivingAddressUsed"];
@@ -98,7 +96,7 @@
             [self.scrollView addSubview:qr];
         } else {
             UILabel *usedLabel = [[UILabel alloc] initWithFrame:CGRectMake(320, 0, 320, 30)];
-            usedLabel.text = @"This address has been used";
+            usedLabel.text = @"This address has already been used. Please login.";
             [self.scrollView addSubview:usedLabel];
         }
     } else {
@@ -110,6 +108,12 @@
 	pins[2] = pin2;
 	pins[3] = pin3;
 	self.pin = @"";
+}
+
+// TODO set this when we receive a on_tx message from the websocket to this address
+- (void)didReceiveBitcoins {
+    [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"nextReceivingAddressUsed"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (IBAction)cancelChangePin:(id)sender
