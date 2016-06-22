@@ -121,6 +121,10 @@
 - (void)didReceiveBitcoins {
     [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"nextReceivingAddressUsed"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    // TODO show alert on payment
+    
+    // TOOD adjust UI so that QR is greyed out (or somehow not scannable) and descLabel shows already used message.
 }
 
 - (IBAction)cancelChangePin:(id)sender
