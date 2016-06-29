@@ -54,7 +54,6 @@
 @property (nonatomic, readwrite, copy) NSString *prompt;
 @property (nonatomic, readwrite, weak) id <PEViewControllerDelegate> delegate;
 @property (nonatomic, strong) IBOutlet UILabel *versionLabel;
-@property (nonatomic, strong) IBOutlet UILabel *swipeLabel;
 @property (nonatomic, strong) IBOutlet UIButton *cancelButton;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView * activityIndicator;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;

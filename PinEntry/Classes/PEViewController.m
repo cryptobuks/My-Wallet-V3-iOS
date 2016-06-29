@@ -74,8 +74,8 @@
     // TODO set these on app exit
     // TODO add setting to disable swipe-to-receive
     
-    NSString *nextAddress = [[NSUserDefaults standardUserDefaults] objectForKey:@"nextReceivingAddress"];
-    NSNumber *nextAddressUsed = [[NSUserDefaults standardUserDefaults] objectForKey:@"nextReceivingAddressUsed"];
+    NSString *nextAddress = [[NSUserDefaults standardUserDefaults] objectForKey:USER_DEFAULTS_KEY_NEXT_ADDRESS];
+    NSNumber *nextAddressUsed = [[NSUserDefaults standardUserDefaults] objectForKey:USER_DEFAULTS_KEY_NEXT_ADDRESS_USED];
     
     // TODO - add && !changepin to this
     if (nextAddress) {
@@ -86,7 +86,7 @@
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:.5 animations:^{
-                self.swipeLabel.alpha = 0;
+                swipeLabel.alpha = 0;
             }];
         });
         
@@ -104,12 +104,12 @@
             
             [self.scrollView addSubview:qr];
         } else {
-            descLabel.text = @"This address has already been used. Please login.";
+            descLabel.text = BC_STRING_ADDRESS_ALREADY_USED_PLEASE_LOGIN;
         }
         
         [self.scrollView addSubview:descLabel];
     } else {
-        self.swipeLabel.hidden = YES;
+        swipeLabel.hidden = YES;
     }
     
     pins[0] = pin0;
