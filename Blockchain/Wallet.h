@@ -117,6 +117,7 @@
 @property(nonatomic, strong) NSMutableDictionary *transactionProgressListeners;
 
 @property(nonatomic) NSDictionary *accountInfo;
+@property(nonatomic) BOOL hasLoadedAccountInfo;
 
 @property(nonatomic) NSString *lastScannedWatchOnlyAddress;
 @property(nonatomic) NSString *lastImportedAddress;
@@ -255,6 +256,17 @@
 
 // Settings
 - (void)getAccountInfo;
+- (NSString *)getEmail;
+- (NSString *)getSMSNumber;
+- (BOOL)getSMSVerifiedStatus;
+- (NSString *)getPasswordHint;
+- (NSDictionary *)getCurrencies;
+- (int)getTwoStepType;
+- (NSArray *)getEmailNotificationsType;
+- (int)getEmailNotificationsStatus;
+- (BOOL)getEmailVerifiedStatus;
+- (BOOL)getTorBlockingStatus;
+
 - (void)changeEmail:(NSString *)newEmail;
 - (void)resendVerificationEmail:(NSString *)email;
 - (void)getAllCurrencySymbols;

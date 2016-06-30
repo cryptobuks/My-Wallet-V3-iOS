@@ -275,6 +275,96 @@
     [self.webView executeJS:@"JSON.stringify(MyWalletPhone.getAccountInfo())"];
 }
 
+- (NSString *)getEmail
+{
+    if (![self isInitialized]) {
+        return nil;
+    }
+    
+    return [self.webView executeJSSynchronous:@"MyWalletPhone.getEmail()"];
+}
+
+- (NSString *)getSMSNumber
+{
+    if (![self isInitialized]) {
+        return nil;
+    }
+    
+    return [self.webView executeJSSynchronous:@"MyWalletPhone.getSMSNumber()"];
+}
+
+- (BOOL)getSMSVerifiedStatus
+{
+    if (![self isInitialized]) {
+        return NO;
+    }
+    
+    return [[self.webView executeJSSynchronous:@"MyWalletPhone.getSMSVerifiedStatus()"] boolValue];
+}
+
+- (NSString *)getPasswordHint
+{
+    if (![self isInitialized]) {
+        return nil;
+    }
+    
+    return self.accountInfo[DICTIONARY_KEY_ACCOUNT_SETTINGS_PASSWORD_HINT];
+}
+
+- (NSDictionary *)getCurrencies
+{
+    if (![self isInitialized]) {
+        return nil;
+    }
+    
+    return self.accountInfo[DICTIONARY_KEY_ACCOUNT_SETTINGS_CURRENCIES];
+}
+
+- (int)getTwoStepType
+{
+    if (![self isInitialized]) {
+        return -1;
+    }
+    
+    return [self.accountInfo[DICTIONARY_KEY_ACCOUNT_SETTINGS_TWO_STEP_TYPE] intValue];
+}
+
+- (NSArray *)getEmailNotificationsType
+{
+    if (![self isInitialized]) {
+        return nil;
+    }
+    
+    return self.accountInfo[DICTIONARY_KEY_ACCOUNT_SETTINGS_NOTIFICATIONS_TYPE];
+}
+
+- (int)getEmailNotificationsStatus
+{
+    if (![self isInitialized]) {
+        return -1;
+    }
+    
+    return [self.accountInfo[DICTIONARY_KEY_ACCOUNT_SETTINGS_NOTIFICATIONS_ON] intValue];
+}
+
+- (BOOL)getEmailVerifiedStatus
+{
+    if (![self isInitialized]) {
+        return NO;
+    }
+    
+    return [[self.webView executeJSSynchronous:@"MyWalletPhone.getEmailVerifiedStatus()"] boolValue];
+}
+
+- (BOOL)getTorBlockingStatus
+{
+    if (![self isInitialized]) {
+        return NO;
+    }
+    
+    return [self.accountInfo[DICTIONARY_KEY_ACCOUNT_SETTINGS_TOR_BLOCKING] boolValue];
+}
+
 - (void)changeEmail:(NSString *)newEmail
 {
     if (![self isInitialized]) {
@@ -1653,6 +1743,7 @@
 {
     DLog(@"on_get_account_info");
     self.accountInfo = [accountInfo getJSONObject];
+    self.hasLoadedAccountInfo = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_KEY_GET_ACCOUNT_INFO_SUCCESS object:nil];
 }
 
@@ -2389,28 +2480,28 @@
 
 - (BOOL)hasVerifiedEmail
 {
-    return [[self.accountInfo objectForKey:DICTIONARY_KEY_ACCOUNT_SETTINGS_EMAIL_VERIFIED] boolValue];
+    return [self getEmailVerifiedStatus];
 }
 
 - (BOOL)hasVerifiedMobileNumber
 {
-    return [self.accountInfo[DICTIONARY_KEY_ACCOUNT_SETTINGS_SMS_VERIFIED] boolValue];
+    return [self getSMSVerifiedStatus];
 }
 
 - (BOOL)hasStoredPasswordHint
 {
-    NSString *passwordHint = app.wallet.accountInfo[DICTIONARY_KEY_ACCOUNT_SETTINGS_PASSWORD_HINT];
+    NSString *passwordHint = [app.wallet getPasswordHint];
     return ![[passwordHint stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""] && passwordHint;
 }
 
 - (BOOL)hasEnabledTwoStep
 {
-    return [self.accountInfo[DICTIONARY_KEY_ACCOUNT_SETTINGS_TWO_STEP_TYPE] intValue] != 0;
+    return [self getTwoStepType] != 0;
 }
 
 - (BOOL)hasBlockedTorRequests
 {
-    return [self.accountInfo[DICTIONARY_KEY_ACCOUNT_SETTINGS_TOR_BLOCKING] boolValue];
+    return [self getTorBlockingStatus];
 }
 
 - (int)securityCenterScore

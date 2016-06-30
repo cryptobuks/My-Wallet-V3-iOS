@@ -1365,7 +1365,23 @@ MyWalletPhone.getAccountInfo = function () {
         console.log('Error getting account info: ' + e);
     };
     
-    BlockchainSettingsAPI.getAccountInfo(success, error);
+    MyWallet.wallet.fetchAccountInfo().then(success).catch(error);
+}
+
+MyWalletPhone.getEmail = function () {
+    return MyWallet.wallet.accountInfo.email;
+}
+
+MyWalletPhone.getSMSNumber = function () {
+    return MyWallet.wallet.accountInfo.mobile;
+}
+
+MyWalletPhone.getEmailVerifiedStatus = function () {
+    return MyWallet.wallet.isEmailVerified;
+}
+
+MyWalletPhone.getSMSVerifiedStatus = function () {
+    return MyWallet.wallet.isMobileVerified;
 }
 
 MyWalletPhone.changeEmail = function(email) {
