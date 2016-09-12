@@ -25,6 +25,7 @@
     [self.bottomAccessoryLabel removeFromSuperview];
     [self.fiatValueWhenSentLabel removeFromSuperview];
     [self.transactionFeeLabel removeFromSuperview];
+    [self.textViewPlaceholderLabel removeFromSuperview];
     
     [self.amountButton removeFromSuperview];
     [self.editButton removeFromSuperview];
@@ -183,7 +184,8 @@
     self.textViewPlaceholderLabel.textAlignment = NSTextAlignmentRight;
     self.textViewPlaceholderLabel.font = [self.textView.font fontWithSize:self.textView.font.pointSize];
     self.textViewPlaceholderLabel.textColor = [UIColor lightGrayColor];
-    self.textViewPlaceholderLabel.text = BC_STRING_TRANSACTION_DESCRIPTION_PLACEHOLDER;
+    NSString *label = [self.detailViewDelegate getReceiveLabel];
+    self.textViewPlaceholderLabel.text = label.length > 0 ? label : BC_STRING_TRANSACTION_DESCRIPTION_PLACEHOLDER;
     self.textViewPlaceholderLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:self.textViewPlaceholderLabel];
 }

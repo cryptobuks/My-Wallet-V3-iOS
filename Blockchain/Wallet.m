@@ -1700,9 +1700,25 @@
     [self.context evaluateScript:[NSString stringWithFormat:@"MyWallet.wallet.setNote(\"%@\", \"%@\")", [hash escapeStringForJS], [note escapeStringForJS]]];
 }
 
+- (NSString *)getNoteForTransaction:(NSString *)hash
+{
+    return [[self.context evaluateScript:[NSString stringWithFormat:@"MyWallet.wallet.getNote(\"%@\")", [hash escapeStringForJS]]] toString];
+}
+
 - (void)getFiatAtTime:(uint64_t)time value:(int64_t)value currencyCode:(NSString *)currencyCode
 {
     [self.context evaluateScript:[NSString stringWithFormat:@"MyWalletPhone.getFiatAtTime(%lld, %lld, \"%@\")", time, value, [currencyCode escapeStringForJS]]];
+}
+
+- (NSString *)getNotePlaceholderForTransaction:(Transaction *)transaction filter:(NSInteger)filter
+{
+    NSString *note = [[self.context evaluateScript:[NSString stringWithFormat:@"MyWalletPhone.getNotePlaceholder(%li, \"%@\")", (long)filter, transaction.myHash]] toString];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [app hideBusyView];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_KEY_GET_NOTE_PLACEHOLDER object:nil];
+    });
+
+    return note;
 }
 
 # pragma mark - Transaction handlers

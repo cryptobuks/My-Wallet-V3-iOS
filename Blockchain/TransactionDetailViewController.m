@@ -52,6 +52,13 @@ const CGFloat rowHeightToFrom = 88;
     if (!self.transaction.fiatAmountAtTime) {
         [self getFiatAtTime];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDescription) name:NOTIFICATION_KEY_GET_NOTE_PLACEHOLDER object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setupTextViewInputAccessoryView
@@ -81,10 +88,15 @@ const CGFloat rowHeightToFrom = 88;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDataAfterGetFiatAtTime) name:NOTIFICATION_KEY_GET_FIAT_AT_TIME object:nil];
 }
 
+- (NSString *)getReceiveLabel
+{
+    return self.receiveLabel.length > 0 ? self.receiveLabel : nil;
+}
+
 - (void)endEditing
 {
     [self.textView resignFirstResponder];
-    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:cellRowDescription inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    [self reloadDescription];
 }
 
 - (void)textViewDidChange:(UITextView *)textView
@@ -110,6 +122,11 @@ const CGFloat rowHeightToFrom = 88;
     [app.wallet saveNote:self.textView.text forTransaction:self.transaction.myHash];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getHistoryAfterSavingNote) name:NOTIFICATION_KEY_BACKUP_SUCCESS object:nil];
+}
+
+- (void)reloadDescription
+{
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:cellRowDescription inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)getHistoryAfterSavingNote
@@ -170,18 +187,18 @@ const CGFloat rowHeightToFrom = 88;
     TransactionDetailTableCell *cell = (TransactionDetailTableCell *)[tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_TRANSACTION_DETAIL forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.clipsToBounds = YES;
-    
+    cell.detailViewDelegate = self;
+
     if (indexPath.row == cellRowValue) {
         [cell configureValueCell:self.transaction];
-        cell.detailViewDelegate = self;
     } else if (indexPath.row == cellRowDescription) {
         // Set initial height for sizeThatFits: calculation
+
         cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height < rowHeightDefault ? rowHeightDefault : cell.frame.size.height);
         
         [cell configureDescriptionCell:self.transaction];
         
         self.oldTextViewHeight = cell.textView.frame.size.height;
-        cell.detailViewDelegate = self;
         self.textView = cell.textView;
         cell.textView.inputAccessoryView = self.descriptonInputAccessoryView;
     } else if (indexPath.row == cellRowToFrom) {

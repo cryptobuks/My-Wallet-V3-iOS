@@ -132,6 +132,15 @@
     detailViewController.transactionCount = app.latestResponse.transactions.count;
     detailViewController.transactionIndex = indexPath.row;
     
+    if (transaction.note.length == 0 && [transaction.txType isEqualToString:TX_TYPE_RECEIVED]) {
+        
+        [app showBusyViewWithLoadingText:BC_STRING_LOADING_LOADING_TRANSACTIONS];
+        
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            detailViewController.receiveLabel = [app.wallet getNotePlaceholderForTransaction:self.transaction filter:app.filterIndex];
+        });
+    }
+    
     TransactionDetailNavigationController *navigationController = [[TransactionDetailNavigationController alloc] initWithRootViewController:detailViewController];
     
     navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;

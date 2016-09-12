@@ -40,7 +40,7 @@
 @property(nonatomic, assign) int tag;
 @end
 
-@class Wallet;
+@class Wallet, Transaction;
 
 @protocol WalletDelegate <NSObject>
 @optional
@@ -322,6 +322,8 @@
 
 // Transaction Details
 - (void)saveNote:(NSString *)note forTransaction:(NSString *)hash;
+- (NSString *)getNotePlaceholderForTransaction:(Transaction *)transaction filter:(NSInteger)filter;
+- (NSString *)getNoteForTransaction:(NSString *)hash;
 - (void)getFiatAtTime:(uint64_t)time value:(int64_t)value currencyCode:(NSString *)currencyCode;
 
 @end
