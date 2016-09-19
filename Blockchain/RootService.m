@@ -41,6 +41,7 @@
 #import "DebugTableViewController.h"
 #import "KeychainItemWrapper+Credentials.h"
 #import "NSString+SHA256.h"
+#import <UserNotifications/UserNotifications.h>
 
 @implementation RootService
 
@@ -118,6 +119,12 @@ void (^secondPasswordSuccess)(NSString *);
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        // Enable or disable features based on authorization.
+    }];
+    
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
     [SessionManager setupSharedSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self.certificatePinner queue:nil];
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -391,6 +398,13 @@ void (^secondPasswordSuccess)(NSString *);
     [_sendViewController reload];
     
     return YES;
+}
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"content---%@", token);
 }
 
 #pragma mark - Setup
