@@ -830,8 +830,8 @@ void (^secondPasswordSuccess)(NSString *);
     } else {
         [self reloadAfterMultiAddressResponse];
     }
-#else
-    [self reloadAfterMultiAddressResponse];
+#else    
+    [self getAccountInfo];
 #endif
     
     int newDefaultAccountLabeledAddressesCount = [self.wallet getDefaultAccountLabelledAddressesCount];
@@ -846,6 +846,45 @@ void (^secondPasswordSuccess)(NSString *);
 {
     _transactionsViewController.latestBlock = block;
     [_transactionsViewController reload];
+}
+
+- (void)getAccountInfo
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getCurrencySymbolsAfterAccountInfo) name:NOTIFICATION_KEY_GET_ACCOUNT_INFO_SUCCESS object:nil];
+    [app.wallet getAccountInfo];
+}
+
+- (void)getCurrencySymbolsAfterAccountInfo
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_KEY_GET_ACCOUNT_INFO_SUCCESS object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadAfterGettingCurrencySymbols) name:NOTIFICATION_KEY_GET_ALL_CURRENCY_SYMBOLS_SUCCESS object:nil];
+    [app.wallet getAllCurrencySymbols];
+}
+
+- (void)reloadAfterGettingCurrencySymbols
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_KEY_GET_ALL_CURRENCY_SYMBOLS_SUCCESS object:nil];
+    
+    {
+        NSString *fiatCode = app.wallet.accountInfo[DICTIONARY_KEY_ACCOUNT_SETTINGS_CURRENCY_FIAT];
+        NSMutableDictionary *symbolLocalDict = [[NSMutableDictionary alloc] initWithDictionary:[app.wallet.currencySymbols objectForKey:fiatCode]];
+        [symbolLocalDict setObject:fiatCode forKey:DICTIONARY_KEY_CODE];
+        if (symbolLocalDict) {
+            app.latestResponse.symbol_local = [CurrencySymbol symbolFromDict:symbolLocalDict];
+        }
+    }
+    
+    {
+        NSString *btcCode = app.wallet.accountInfo[DICTIONARY_KEY_ACCOUNT_SETTINGS_CURRENCY_FIAT];
+        NSMutableDictionary *symbolBTCDict = [[NSMutableDictionary alloc] initWithDictionary:[app.wallet.currencySymbols objectForKey:btcCode]];
+        [symbolBTCDict setObject:btcCode forKey:DICTIONARY_KEY_CODE];
+        if (symbolBTCDict) {
+            app.latestResponse.symbol_btc = [CurrencySymbol symbolFromDict:symbolBTCDict];
+        }
+    }
+    
+    [self reloadAfterMultiAddressResponse];
 }
 
 - (void)walletFailedToDecrypt
